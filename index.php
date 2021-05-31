@@ -1,48 +1,24 @@
-<?php 
-class Movie{
-    //Attributi/proprieta/variabili
-    public $title;
-    public $year;
-    public $description;
-    //Costruttore
-    function __construct($title, $year, $description){
-       $this->title = $title;
-       $this->year = $year;
-       $this->description = $description; 
-    }
-    //get excerpt for post
-     function getExcerpt(){
-         $sub = substr($this->description, 0, 30);
-         return $sub;
-
-     }
-}
-
-//instanza movie 1 
-$movie1 = new Movie('Movie','1999','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio sapien,
-tincidunt ac bibendum et, tempor sit amet arcu. Praesent ut sem at purus tempus placerat sit amet id diam.
-Nullam id malesuada lectus.');
-var_dump($movie1);
-
-echo $movie1->title;
-
-echo $movie1->year;
-
-echo $movie1->description;
-
-echo '<p>' . $movie1->getExcerpt() . '</p>';
-
-//instanza movie 2
-$movie2 = new Movie('Movie-Movie','2020',' Mauris nec urna mattis, hendrerit lectus eget,
-dictum mi. Praesent non dignissim tellus, non ullamcorper felis. Phasellus iaculis bibendum bibendum.
-Duis elementum elit non pulvinar pretium.');
-var_dump($movie2);
-
-echo $movie2->title;
-
-echo $movie2->year;
-
-echo $movie2->description;
-
-echo '<p>' . $movie2->getExcerpt() . '</p>';
-
+<?php
+   require_once __DIR__ . '/movies.php';
+   require_once __DIR__ . '/movies_data.php'; 
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Movies</h1>
+    <?php
+    foreach($movies as $movie){ 
+        $movie = new Movie($movie['title'], $movie['year'], $movie['description']);?>
+        <h2>Title: <?php echo $movie->title ?></h2>
+        <h2>Year: <?php echo $movie->year ?> </h2>
+        <p><?php echo $movie->description ?></p>
+    <?php } ?>
+    
+</body>
+</html>
